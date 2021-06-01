@@ -2,13 +2,21 @@ package com.example.gsbvisite.view;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.gsbvisite.R;
 import com.example.gsbvisite.controller.MedicamentController;
+import com.example.gsbvisite.controller.RendezVousController;
 import com.example.gsbvisite.model.Medicament;
+
+import androidx.appcompat.widget.Toolbar;
+import com.example.gsbvisite.model.RendezVous;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -16,30 +24,57 @@ public class MedicamentActivity extends AppCompatActivity implements AdapterView
 
     private ListView lvMedicaments;
     private ArrayList<Medicament> medicaments;
-    private MedicamentController medicamentController;
+    private ArrayList<RendezVous> rendezVous;
+    private RendezVousController rendezVousController;
     private MedicamentListAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicament);
+        this.rendezVousController = RendezVousController.getInstance(this);
+        rendezVous = rendezVousController.rendezVous();
         medicaments = getIntent().getParcelableArrayListExtra("medicament");
         lvMedicaments = (ListView)findViewById(R.id.listMedicaments);
         lvMedicaments.setOnItemClickListener(this);
         listAdapter = new MedicamentListAdapter(this, this.medicaments);
         lvMedicaments.setAdapter(listAdapter);
-        gestionClic((ImageButton) findViewById(R.id.btnAcceuil), MainActivity.class);
+        this.configureToolBar();
+        this.configureNavigation();
     }
 
-    private void gestionClic(ImageButton btn, final Class<?> classe) {
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MedicamentActivity.this, classe);
-                startActivity(intent);
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_activity,menu);
+        return true;
+    }
+    private void configureToolBar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Vos médicaments");
+        setSupportActionBar(toolbar);
+    }
+    private void configureNavigation(){
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()){
+                    case R.id.action_accueil:{
+                        intent = new Intent( MedicamentActivity.this, AccueilActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
+                    case R.id.action_rendezVous:{
+                        intent = new Intent( MedicamentActivity.this, VoirRDVActivity.class);
+                        intent.putExtra("rendezVous", rendezVous);
+                        startActivity(intent);
+                        break;
+                    }
+                }
+                return true;
             }
         });
-
     }
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

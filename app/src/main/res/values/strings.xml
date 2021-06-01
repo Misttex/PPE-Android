@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GSBVisite</string>
+    <string name="bottom_navigation_menu_home">Accueil</string>
+    <string name="bottom_navigation_menu_medicaments">Médicaments</string>
+    <string name="bottom_navigation_menu_rendezVous">RendezVous</string>
+    <string name="bottom_navigation_menu_settingss">Paramètres</string>
 </resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/action_accueil"
+            android:enabled="true"
+            android:icon="@drawable/home_24px"
+            android:title="Accueil"
+            app:showAsAction="ifRoom"
+            android:tint="@color/button_add"/>
+    <item
+            android:id="@+id/action_medicine"
+            android:enabled="true"
+            android:icon="@drawable/drugs"
+            android:title="Médicaments"
+            app:showAsAction="ifRoom"
+            android:tint="@color/button_add"/>
+    <item
+            android:id="@+id/action_rendezVous"
+            android:enabled="true"
+            android:icon="@drawable/free_cancellation_24px"
+            android:title="Rendez-vous"
+            app:showAsAction="ifRoom"
+            android:tint="@color/button_add"/>
+    <item
+            android:id="@+id/action_settings"
+            android:enabled="true"
+            android:icon="@drawable/account_circle_24px"
+            android:title="Paramètres"
+            app:showAsAction="ifRoom"
+            android:tint="@color/button_add"/>
+
+</menu>

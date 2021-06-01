@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * created on  01/02/2021.
  * modified on .
  */
-public class RendezVousController {
+public final class RendezVousController {
     private static RendezVousController rendezVousController = null;
     private static ArrayList<RendezVous> rendezVous;
 

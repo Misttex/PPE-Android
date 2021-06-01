@@ -8,14 +8,37 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".view.DetailMedicament">
+            android:theme="@style/GsbTheme">
+        <activity android:name=".view.DetailRendezVous"
+                  android:parentActivityName=".view.VoirRDVActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:resource="@color/text_normal"
+                    android:value=".view.VoirRDVActivity"/>
+        </activity>
+        <activity android:name=".view.PraticienActivity">
+        </activity>
+        <activity
+                android:name=".view.PrendreRdv"
+                android:parentActivityName=".view.VoirRDVActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:resource="@color/text_normal"
+                    android:value=".view.VoirRDVActivity"/>
+        </activity>
+        <activity
+                android:name=".view.DetailMedicament"
+                android:parentActivityName=".view.MedicamentActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:resource="@color/text_normal"
+                    android:value=".view.MedicamentActivity"/>
         </activity>
         <activity android:name=".view.VoirRDVActivity">
         </activity>
-        <activity android:name=".view.NiewRDVActivity">
-        </activity>
         <activity android:name=".view.MedicamentActivity">
+        </activity>
+        <activity android:name=".view.AccueilActivity">
         </activity>
         <activity android:name=".view.MainActivity">
             <intent-filter>
